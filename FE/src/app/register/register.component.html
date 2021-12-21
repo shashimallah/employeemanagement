@@ -1,0 +1,81 @@
+<div class="container col-lg-6" style="margin-top: 5%">
+    <h2>Register</h2>
+    <div class="card">
+        <div class="card-body">
+            <form class="form-group" [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="email" class="form-control" />
+                </div>
+                <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+                    class="alert">
+                    <div *ngIf="registerForm.get('email').errors?.['required']">
+                        Email is required.
+                    </div>
+                    <div *ngIf="registerForm.get('email').errors?.['pattern']">
+                        Email is not valid.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" />
+                </div>
+                <div *ngIf="registerForm.get('name').invalid && (registerForm.get('name').dirty || registerForm.get('name').touched)"
+                    class="alert">
+                    <div *ngIf="registerForm.get('name').errors?.['required']">
+                        Name is required.
+                    </div>
+                    <div *ngIf="registerForm.get('name').errors?.['minlength']">
+                        Username must be at least 4 characters long.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" formControlName="username" class="form-control" />
+                </div>
+                <div *ngIf="registerForm.get('username').invalid && (registerForm.get('username').dirty || registerForm.get('username').touched)"
+                    class="alert">
+                    <div *ngIf="registerForm.get('username').errors?.['required']">
+                        Username is required.
+                    </div>
+                    <div *ngIf="registerForm.get('username').errors?.['minlength']">
+                        Username must be at least 4 characters long.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" formControlName="contactNumber" class="form-control" pattern="(7|8|9)\d{9}" />
+                </div>
+                <div *ngIf="registerForm.get('contactNumber').invalid && (registerForm.get('contactNumber').dirty || registerForm.get('contactNumber').touched)"
+                    class="alert">
+                    <div *ngIf="registerForm.get('contactNumber').errors?.['required']">
+                        Contact Number is required.
+                    </div>
+                    <div *ngIf="registerForm.get('contactNumber').errors?.['maxlength']">
+                        Contact Number should contain maximum 10 digits.
+                    </div>
+                    <div *ngIf="registerForm.get('contactNumber').errors?.['minlength']">
+                        Contact Number should contain minimum 10 digits.
+                    </div>
+                    <div *ngIf="registerForm.get('contactNumber').errors?.['pattern']">
+                        Contact Number is not valid.
+                    </div>
+                </div>
+                <hr class="hr_top_bottom_margin" />
+                <div class="col-md-12">
+                    <div class="form-group" style="display: flex">
+                        <button pButton type="submit" label="Register" [disabled]="!registerForm.valid"
+                            class="p-button-success btn_medium"></button>
+                        <button pButton type="button" label="Login" (click)="login()"
+                            class="p-button-primary btn_medium" style="margin-left: 5px;"></button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

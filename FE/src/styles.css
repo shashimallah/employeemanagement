@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+.btn_medium {
+    height: 30px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.alert div {
+    color: #820000;
+}
+
+.not_specified {
+    color: red;
+    font-style: italic;
+}

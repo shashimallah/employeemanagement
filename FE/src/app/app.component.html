@@ -1,0 +1,14 @@
+<div>
+    <p-menubar [model]="items">
+        <div *ngIf="currentUser">
+            <button type="button" pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em" class="btn_medium" (click)="logout()"></button>
+        </div>
+    </p-menubar>
+</div>
+
+<div class="col-sm-12" style="margin-top: 5px;margin-bottom: 5px;display: flex;">
+</div>
+
+<router-outlet></router-outlet>
+
+<p-toast></p-toast>

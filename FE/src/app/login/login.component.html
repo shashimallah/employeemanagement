@@ -1,0 +1,42 @@
+<div class="container col-lg-6" style="margin-top: 5%">
+    <h2>Login</h2>
+    <div class="card">
+        <div class="card-body">
+            <form class="form-group" [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" formControlName="username" class="form-control" />
+                </div>
+                <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty || loginForm.get('username').touched)"
+                    class="alert">
+                    <div *ngIf="loginForm.get('username').errors?.['required']">
+                        Username is required.
+                    </div>
+                    <div *ngIf="loginForm.get('username').errors?.['minlength']">
+                        Username must be at least 4 characters long.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                </div>
+                <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+                    class="alert">
+                    <div *ngIf="loginForm.get('password').errors?.['required']">
+                        Password is required.
+                    </div>
+                </div>
+                <hr class="hr_top_bottom_margin" />
+                <div class="col-md-12">
+                    <div class="form-group" style="display: flex">
+                        <button pButton type="submit" label="Login" [disabled]="!loginForm.valid"
+                            class="p-button-primary btn_medium"></button>
+                        <button pButton type="button" label="Register" (click)="register()"
+                            class="p-button-success btn_medium" style="margin-left: 5px;"></button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

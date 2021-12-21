@@ -1,0 +1,129 @@
+<div class="container col-lg-6" style="margin-top: 5%">
+    <div>
+        <div>
+            <form class="form-group" [formGroup]="createEmployeeForm" (ngSubmit)="submitEmployee()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="email" class="form-control" />
+                </div>
+                <div *ngIf="createEmployeeForm.get('email').invalid && (createEmployeeForm.get('email').dirty || createEmployeeForm.get('email').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('email').errors?.['required']">
+                        Email is required.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('email').errors?.['pattern']">
+                        Email is not valid.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" />
+                </div>
+                <div *ngIf="createEmployeeForm.get('name').invalid && (createEmployeeForm.get('name').dirty || createEmployeeForm.get('name').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('name').errors?.['required']">
+                        Name is required.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('name').errors?.['minlength']">
+                        Username must be at least 4 characters long.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" formControlName="username" class="form-control" />
+                </div>
+                <div *ngIf="createEmployeeForm.get('username').invalid && (createEmployeeForm.get('username').dirty || createEmployeeForm.get('username').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('username').errors?.['required']">
+                        Username is required.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('username').errors?.['minlength']">
+                        Username must be at least 4 characters long.
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="screen == 'create'">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <div>
+                        <p-dropdown [options]="departments" formControlName="department" optionLabel="name"
+                            [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Department">
+                            <ng-template let-department pTemplate="item">
+                                <div>
+                                    <div>{{department.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div *ngIf="createEmployeeForm.get('department').invalid && (createEmployeeForm.get('department').dirty || createEmployeeForm.get('department').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('department').errors?.['required']">
+                        Department is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Roles</label>
+                    <div>
+                        <p-multiSelect [options]="roles" formControlName="roles" defaultLabel="Select a Role"
+                            optionLabel="name" class="multiselect-custom">
+                            <ng-template let-role pTemplate="item">
+                                <div>
+                                    <div>{{role.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-multiSelect>
+                    </div>
+                </div>
+                <div *ngIf="createEmployeeForm.get('roles').invalid && (createEmployeeForm.get('roles').dirty || createEmployeeForm.get('roles').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('roles').errors?.['required']">
+                        Role is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="text" formControlName="salary" class="form-control" pattern="[0-9]+" />
+                </div>
+                <div *ngIf="createEmployeeForm.get('salary').invalid && (createEmployeeForm.get('salary').dirty || createEmployeeForm.get('salary').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('salary').errors?.['required']">
+                        Salary is required.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('salary').errors?.['pattern']">
+                        Salary must be numbers.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" formControlName="contactNumber" class="form-control" pattern="(7|8|9)\d{9}" />
+                </div>
+                <div *ngIf="createEmployeeForm.get('contactNumber').invalid && (createEmployeeForm.get('contactNumber').dirty || createEmployeeForm.get('contactNumber').touched)"
+                    class="alert">
+                    <div *ngIf="createEmployeeForm.get('contactNumber').errors?.['required']">
+                        Contact Number is required.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('contactNumber').errors?.['maxlength']">
+                        Contact Number should contain maximum 10 digits.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('contactNumber').errors?.['minlength']">
+                        Contact Number should contain minimum 10 digits.
+                    </div>
+                    <div *ngIf="createEmployeeForm.get('contactNumber').errors?.['pattern']">
+                        Contact Number is not valid..
+                    </div>
+                </div>
+                <hr class="hr_top_bottom_margin" />
+                <div class="col-md-12">
+                    <div class="form-group" style="display: flex">
+                        <button pButton type="submit" [label]="screen == 'update'?'Update Employee':'Create Employee'"
+                            [disabled]="!createEmployeeForm.valid" class="p-button-success btn_medium"></button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<p-fieldset legend="My Profile" [toggleable]="true">
+    <div class="col-sm-12">
+        <div class=" row col-sm-12">
+            <div class="col-sm-3">
+                <label>Username</label>
+                <div>{{loginUser?.username}}</div>
+                <div *ngIf="loginUser?.username == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+            <div class="col-sm-3">
+                <label>Name</label>
+                <div>{{loginUser?.name}}</div>
+                <div *ngIf="loginUser?.name == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+            <div class="col-sm-3">
+                <label>Email</label>
+                <div>{{loginUser?.email}}</div>
+                <div *ngIf="loginUser?.email == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+            <div class="col-sm-3">
+                <label>Contact Number</label>
+                <div *ngIf="loginUser?.contactNumber != null">{{loginUser?.contactNumber}}</div>
+                <div *ngIf="loginUser?.contactNumber == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="row col-sm-12">
+            <div class="col-sm-3">
+                <label>Salary</label>
+                <div *ngIf="loginUser?.salary != null">{{loginUser?.salary}}</div>
+                <div *ngIf="loginUser?.salary == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+            <div class="col-sm-3">
+                <label>Department</label>
+                <div *ngIf="loginUser?.department != null">{{loginUser?.department?.name}}</div>
+                <div *ngIf="loginUser?.department == null" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+            <div class="col-sm-3">
+                <label>Roles</label>
+                <div *ngFor="let role of loginUser?.roles">
+                    <span>{{role?.name}}</span>
+                </div>
+                <div *ngIf="loginUser?.roles == null || loginUser?.roles?.length == 0" class="not_specified"> {{'Not Specified'}} </div>
+            </div>
+        </div>
+    </div>
+</p-fieldset>
